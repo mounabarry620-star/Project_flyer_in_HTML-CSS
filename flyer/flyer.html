@@ -233,9 +233,24 @@
             color: #555;
         }
 
-        /* SAE & Parcours Section */
         .sae-parcours {
             margin-top: 25px;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: #fbfcfd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dotted-bg {
+            background-image: radial-gradient(rgba(0, 119, 182, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .sae-parcours h3 {
+            color: var(--amu-dark);
+            font-weight: 900;
+            font-size: 22px;
         }
 
         .parcours-grid {
@@ -474,7 +489,7 @@
                     <div class="competences-list">
                         <div class="comp-card">
                             <h4>Développement</h4>
-                            <p>Maîtrise du Web (React/Node), Mobile (Flutter) et Logiciels (Java/Python).</p>
+                            <p>Maîtrise du Web (React/Node), Mobile (Flutter) et Logiciels (Java/Python/C++).</p>
                         </div>
                         <div class="comp-card">
                             <h4>Systèmes & Réseaux</h4>
@@ -486,17 +501,17 @@
                         </div>
                         <div class="comp-card">
                             <h4>Gestion de projets</h4>
-                            <p>Méthodes Agiles, Communication et Droit du numérique.</p>
+                            <p>Méthodes Agiles, SWOT, Communication et Droit du numérique.</p>
                         </div>
                     </div>
                 </section>
 
-                <section class="sae-parcours">
-                    <h3><i class="fa-solid fa-gears"></i> Pédagogie par projet (S.A.E)</h3>
-                    <p style="font-size: 13px; line-height: 1.5; color: #555;">
-                        Les <strong>Situations d'Apprentissage et d'Évaluation</strong> permettent de mettre en pratique
-                        vos connaissances sur des problématiques réelles (ex: créer une application mobile complète,
-                        auditer une infrastructure réseau).
+                <section class="sae-parcours dotted-bg">
+                    <h3><i class="fa-solid fa-gears"></i> S.A.E : LEARNING BY DOING</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-main); margin-top: 10px;">
+                        Nos situations d'Apprentissage et d'Évaluation sont le coeur de notre pédagogie. Vous travaillez
+                        sur des scénarios réels : déploiement cloud, audit de sécurité, et création d'écosystèmes
+                        applicatifs complexes.
                     </p>
                     <div class="parcours-grid">
                         <span class="parcours-pill">Développement Web</span>
@@ -510,7 +525,7 @@
                 <div class="side-box">
                     <h4>Pourquoi choisir Arles ?</h4>
                     <ul class="side-list">
-                        <li><i class="fa-solid fa-check"></i> Équipements High-Tech (VR, Serveurs)</li>
+                        <li><i class="fa-solid fa-check"></i> Équipements High-Tech</li>
                         <li><i class="fa-solid fa-check"></i> Promotion à taille humaine</li>
                         <li><i class="fa-solid fa-check"></i> Proximité Gare & Centre-ville</li>
                         <li><i class="fa-solid fa-check"></i> École labellisée "SecNumEdu"</li>
