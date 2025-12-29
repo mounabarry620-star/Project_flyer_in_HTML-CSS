@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Flyer BUT Informatique - IUT Arles</title>
@@ -7,24 +8,36 @@
     <style>
         /* --- RESET & BASE --- */
         :root {
-            --amu-blue: #0077b6; /* Bleu officiel IUT */
+            --amu-blue: #0077b6;
+            /* Bleu officiel IUT */
             --amu-dark: #023e8a;
-            --amu-yellow: #ffcc00; /* Jaune peps */
+            --amu-yellow: #ffcc00;
+            /* Jaune peps */
+            --amu-light: #eef6fb;
             --text-main: #2c3e50;
             --bg-light: #f4f7f6;
+            --border-radius: 12px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --accent-gradient: linear-gradient(135deg, var(--amu-blue), var(--amu-dark));
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+        }
+
         body {
-            background-color: #333; /* Juste pour la présentation à l'écran */
+            background-color: #333;
+            /* Juste pour la présentation à l'écran */
             display: flex;
             justify-content: center;
             padding: 20px;
         }
 
         /* --- CONTENEUR A4 --- */
-        .flyer-container {
+        .flyer {
             width: 210mm;
             height: 297mm;
             background: white;
@@ -32,220 +45,493 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
         }
 
-        /* --- 1. EN-TÊTE AVEC LOGO & PHOTO BATIMENT --- */
-        header {
-            height: 20%; /* Plus grand pour combler le vide */
-            background-color: var(--amu-dark);
-            position: relative;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            /* ICI : On met l'image du bâtiment en fond teinté */
-            background-image: linear-gradient(rgba(2, 62, 138, 0.85), rgba(2, 62, 138, 0.7)), url('URL_IMAGE_BATIMENT_IUT.jpg'); 
-            background-size: cover;
-            background-position: center;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-
-        .header-content { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-        
-        /* Emplacement du Logo */
-        .logo-box img {
-            height: 80px; /* Taille du logo */
-            background: white; /* Fond blanc pour le logo si c'est un PNG transparent */
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .titles { text-align: right; }
-        h1 { font-size: 2.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 5px; }
-        .subtitle { font-size: 1.1rem; color: var(--amu-yellow); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- 2. VISUEL CENTRAL --- */
-        .hero {
-            height: 25%;
-            position: relative;
-            margin-top: 30px; /* Chevauchement design */
-            
-        }
-        .hero img {
-               width: 100%;           /* Prend toute la largeur */
-               height: 100%;          /* Prend toute la hauteur du bloc hero */
-               object-fit: cover;     /* LE SECRET : Recadre l'image sans la déformer (comme un zoom) */
-               object-position: center; /* Centre l'image (tu peux changer par 'top' ou 'bottom') */
-               justify-content: center;
-               display: block;        /* Enlève les petits espaces blancs fantômes */
-               margin-top: -30px;    /* Remonte l'image pour le chevauchement */
-               margin-bottom: 0;  /* Espace en bas */
-}
-        .hero-tag {
+        /* Abstract Tech Background Pattern */
+        .flyer::before {
+            content: "{} </>";
             position: absolute;
-            bottom: 10px; right: 20px;
+            top: 20px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 180px;
+            color: rgba(0, 0, 0, 0.02);
+            font-weight: 800;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header Section */
+        header {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-main {
+            height: 70px;
+        }
+
+        .header-title {
+            text-align: right;
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--amu-blue);
+            line-height: 1;
+        }
+
+        .header-title p {
+            font-size: 16px;
+            color: var(--amu-dark);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section (AIDA: Attention) */
+        .hero {
+            position: relative;
+            height: 380px;
+            margin: 0 40px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 74, 153, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .badge-premium {
             background: var(--amu-yellow);
             color: var(--amu-dark);
-            padding: 8px 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transform: skewX(-10deg);
-            box-shadow: 3px 3px 0px var(--amu-dark);
-        }
-
-        /* --- 3. CONTENU PRINCIPAL --- */
-        .main-content {
-            flex-grow: 1;
-            padding: 10px 30px;
-            display: grid;
-            grid-template-columns: 45% 50%; /* 2 colonnes */
-            gap: 5%;
-        }
-
-        .section-title {
-            color: var(--amu-blue);
-            font-size: 1.3rem;
-            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            align-self: flex-start;
             margin-bottom: 15px;
-            border-bottom: 3px solid var(--amu-yellow);
-            display: inline-block;
-            padding-bottom: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Liste Compétences avec icônes FontAwesome */
-        .skills-list { list-style: none; }
-        .skills-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            font-size: 0.95rem;
-            color: #444;
+        .hero-text h2 {
+            font-size: 42px;
+            color: white;
+            font-weight: 800;
+            line-height: normal;
         }
-        .skills-list i {
-            color: var(--amu-blue);
-            font-size: 1.2rem;
-            margin-right: 12px;
-            min-width: 25px;
+
+        /* Stats Bar (AIDA: Interest) */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: -30px 60px 20px 60px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 2;
             text-align: center;
         }
 
-        /* Bloc Info BUT (Le côté dense) */
-        .info-box {
-            background: #f0f4f8;
-            padding: 15px;
-            border-left: 5px solid var(--amu-dark);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+        .stat-item i {
+            color: var(--amu-blue);
+            font-size: 20px;
+            margin-bottom: 5px;
         }
-        .info-box strong { color: var(--amu-dark); }
 
-        /* --- 4. FOOTER APPEL A L'ACTION --- */
+        .stat-value {
+            display: block;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--amu-dark);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            padding: 20px 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            flex-grow: 1;
+        }
+
+        section h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--amu-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        section h3::after {
+            content: "";
+            flex-grow: 1;
+            height: 2px;
+            background: rgba(0, 74, 153, 0.1);
+        }
+
+        /* Competence Cards */
+        .competences-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .comp-card {
+            background: var(--amu-light);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--amu-blue);
+        }
+
+        .comp-card h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--amu-dark);
+        }
+
+        .comp-card p {
+            font-size: 12px;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        /* SAE & Parcours Section */
+        .sae-parcours {
+            margin-top: 25px;
+        }
+
+        .parcours-grid {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .parcours-pill {
+            background: #eee;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        /* Right Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .side-box {
+            background: #fdfdfd;
+            border: 1px solid #ebebeb;
+            padding: 18px;
+            border-radius: var(--border-radius);
+        }
+
+        .side-box h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--amu-blue);
+        }
+
+        .side-list {
+            list-style: none;
+            font-size: 12px;
+        }
+
+        .side-list li {
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .side-list i {
+            color: var(--amu-yellow);
+            margin-top: 3px;
+        }
+
+        /* Testimonial (AIDA: Desire) */
+        .testimonial {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 18px;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .author-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--amu-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--amu-dark);
+        }
+
+        /* Footer (AIDA: Action) */
         footer {
             background: var(--amu-dark);
             color: white;
-            padding: 15px 30px;
+            padding: 30px 40px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
-        
-        .cta-text h3 { font-size: 1.5rem; color: var(--amu-yellow); margin-bottom: 5px; }
-        .cta-text p { font-size: 0.9rem; margin-bottom: 2px; }
-        .cta-text i { margin-right: 8px; color: var(--amu-blue); background: white; padding: 5px; border-radius: 50%; width: 25px; text-align: center; }
+
+        .jpo-box {
+            flex-grow: 1;
+        }
+
+        .jpo-label {
+            color: var(--amu-yellow);
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .jpo-date {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 5px 0;
+        }
+
+        .jpo-location {
+            font-size: 12px;
+            opacity: 0.8;
+        }
 
         .qr-section {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .qr-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #eee;
             display: flex;
             align-items: center;
-            background: white;
-            padding: 5px 15px 5px 5px;
-            border-radius: 5px;
+            justify-content: center;
+            color: #999;
+            font-size: 10px;
         }
-        .qr-placeholder {
-            width: 70px; height: 70px;
-            background: #ddd; /* REMPLACER PAR TON IMAGE QR CODE */
-            display: flex; align-items: center; justify-content: center;
-            color: black; font-weight: bold; font-size: 0.7rem; text-align: center;
-        }
-        .qr-text { color: var(--amu-dark); font-weight: bold; margin-left: 10px; line-height: 1.2; font-size: 0.9rem; }
 
+        .qr-label {
+            color: var(--amu-dark);
+            font-weight: 800;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .flyer {
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
-<body>
 
-    <div class="flyer-container">
-        
+<body>
+    <div class="flyer">
         <header>
-            <div class="header-content">
-                <div class="logo-box">
-                    <img src="Logo IUT Info Arles.png" alt="Logo AMU">
-                </div>
-                <div class="titles">
-                    <h1>BUT Informatique</h1>
-                    <div class="subtitle">IUT d'Aix-Marseille &mdash; Site d'Arles</div>
-                </div>
+            <img src="Logo IUT Info Arles.png" alt="IUT Arles Logo" class="logo-main">
+            <div class="header-title">
+                <h1>BUT INFORMATIQUE</h1>
+                <p>IUT D'AIX-MARSEILLE • SITE D'ARLES</p>
             </div>
         </header>
 
         <div class="hero">
-            <img src="image_iut_t.webp" alt="Photo Étudiants IUT">
-            <div class="hero-tag">FORMATION PUBLIC D'EXCELLENCE</div>
+            <img src="image_iut_t.webp" alt="Formation BUT Info" class="hero-img">
+            <div class="hero-overlay">
+                <span class="badge-premium">Formation Publique d'Excellence</span>
+                <h2>Devenez expert en <br>développement & réseaux</h2>
+            </div>
         </div>
 
-        <div class="main-content">
-            
-            <div class="col-left">
-                <h2 class="section-title">La Formation</h2>
-                <div class="info-box">
-                    <p><strong>Bachelor Universitaire de Technologie</strong><br>
-                    Grade de Licence (Bac+3) • 180 ECTS</p>
-                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ccc;">
-                    <p style="margin-top:5px;"><i class="fas fa-check-circle" style="color:green;"></i> <strong>Professionnalisant :</strong> 22 à 26 semaines de stage.</p>
-                    <p style="margin-top:5px;"><i class="fas fa-briefcase" style="color:green;"></i> <strong>Alternance :</strong> Possible dès la 2ème année.</p>
-                </div>
-
-                <h2 class="section-title">Pourquoi Arles ?</h2>
-                <ul class="skills-list">
-                    <li><i class="fas fa-users"></i> Pédagogie par petits groupes</li>
-                    <li><i class="fas fa-project-diagram"></i> Apprentissage par Projets (SAÉ)</li>
-                    <li><i class="fas fa-laptop-code"></i> Matériel récent et salles dédiées</li>
-                </ul>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="stat-value">BAC +3</span>
+                <span class="stat-label">Grade Licence</span>
             </div>
-
-            <div class="col-right">
-                <h2 class="section-title">Compétences Acquises</h2>
-                <ul class="skills-list">
-                    <li><i class="fas fa-mobile-alt"></i> <strong>Réaliser :</strong> Conception d'applis web et mobiles</li>
-                    <li><i class="fas fa-database"></i> <strong>Gérer :</strong> Administration des bases de données</li>
-                    <li><i class="fas fa-server"></i> <strong>Administrer :</strong> Systèmes et réseaux sécurisés</li>
-                    <li><i class="fas fa-chart-line"></i> <strong>Optimiser :</strong> Algorithmes et performances</li>
-                </ul>
-
-                <h2 class="section-title">Débouchés</h2>
-                <div style="font-size: 0.9rem; color: #555; background: white; padding: 10px; border: 1px dashed #aaa;">
-                    <strong>Métiers :</strong> Développeur Full-Stack, DevOps, Data Analyst, Admin Sys...<br><br>
-                    <strong>Poursuites :</strong> Masters Universitaires, Écoles d'Ingénieurs.
-                </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-briefcase"></i>
+                <span class="stat-value">22-26 SEM.</span>
+                <span class="stat-label">De Stages</span>
             </div>
-
+            <div class="stat-item">
+                <i class="fa-solid fa-user-group"></i>
+                <span class="stat-value">100%</span>
+                <span class="stat-label">Accompagnement</span>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-laptop-code"></i>
+                <span class="stat-value">600h</span>
+                <span class="stat-label">Projets Tutores</span>
+            </div>
         </div>
+
+        <main class="main-grid">
+            <div class="content-left">
+                <section>
+                    <h3><i class="fa-solid fa-bolt"></i> Compétences acquises</h3>
+                    <div class="competences-list">
+                        <div class="comp-card">
+                            <h4>Développement</h4>
+                            <p>Maîtrise du Web (React/Node), Mobile (Flutter) et Logiciels (Java/Python).</p>
+                        </div>
+                        <div class="comp-card">
+                            <h4>Systèmes & Réseaux</h4>
+                            <p>Administration Linux, Routage Cisco, Cybersécurité et IoT.</p>
+                        </div>
+                        <div class="comp-card">
+                            <h4>Bases de données</h4>
+                            <p>Conception SQL/NoSQL et manipulation Big Data.</p>
+                        </div>
+                        <div class="comp-card">
+                            <h4>Gestion de projets</h4>
+                            <p>Méthodes Agiles, Communication et Droit du numérique.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sae-parcours">
+                    <h3><i class="fa-solid fa-gears"></i> Pédagogie par projet (S.A.E)</h3>
+                    <p style="font-size: 13px; line-height: 1.5; color: #555;">
+                        Les <strong>Situations d'Apprentissage et d'Évaluation</strong> permettent de mettre en pratique
+                        vos connaissances sur des problématiques réelles (ex: créer une application mobile complète,
+                        auditer une infrastructure réseau).
+                    </p>
+                    <div class="parcours-grid">
+                        <span class="parcours-pill">Développement Web</span>
+                        <span class="parcours-pill">Administration Cloud</span>
+                        <span class="parcours-pill">IA & Data</span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="sidebar">
+                <div class="side-box">
+                    <h4>Pourquoi choisir Arles ?</h4>
+                    <ul class="side-list">
+                        <li><i class="fa-solid fa-check"></i> Équipements High-Tech (VR, Serveurs)</li>
+                        <li><i class="fa-solid fa-check"></i> Promotion à taille humaine</li>
+                        <li><i class="fa-solid fa-check"></i> Proximité Gare & Centre-ville</li>
+                        <li><i class="fa-solid fa-check"></i> École labellisée "SecNumEdu"</li>
+                    </ul>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "L'ambiance à Arles est exceptionnelle. Les profs sont très accessibles et on travaille sur des
+                        technos modernes qu'on retrouve en entreprise."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-img">M</div>
+                        <span>Maxime, Étudiant en 2ème année</span>
+                    </div>
+                </div>
+
+                <div class="side-box">
+                    <h4>Après le BUT ?</h4>
+                    <p style="font-size: 11px; line-height: 1.4; color: #666;">
+                        Insertion directe (Développeur FullStack, DevOps) ou poursuite en Master / Écoles d'ingénieurs.
+                    </p>
+                </div>
+            </div>
+        </main>
 
         <footer>
-            <div class="cta-text">
-                <h3>VENEZ NOUS RENCONTRER !</h3>
-                <p><i class="fas fa-calendar-alt"></i> <strong>Journée Portes Ouvertes :</strong> Samedi 10 Février</p>
-                <p><i class="fas fa-map-marker-alt"></i> Rue Raoul Follereau, 13200 Arles</p>
+            <div class="jpo-box">
+                <span class="jpo-label">Journée Portes Ouvertes</span>
+                <p class="jpo-date">SAMEDI 10 FÉVRIER 2025</p>
+                <p class="jpo-location">9h - 17h • IUT Arles, Rue Raoul Follereau</p>
             </div>
-            
             <div class="qr-section">
-                <div class="qr-placeholder">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iut.univ-amu.fr" alt="QR Code" style="width:100%; height:100%;">
-                </div>
-                <div class="qr-text">SCANNEZ<br>POUR + D'INFOS</div>
+                <!-- Replace with real QR if needed -->
+                <div class="qr-placeholder"><i class="fa-solid fa-qrcode fa-3x"></i></div>
+                <span class="qr-label">SITE IUT ARLES</span>
             </div>
         </footer>
-
     </div>
 
 </body>
+
 </html>
