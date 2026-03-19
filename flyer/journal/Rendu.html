@@ -4,87 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Une - Hadafo Media</title>
+    <title>La Une - HADAFO MEDIA</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'sm': { 'raw': '(min-width: 640px), print' },
+                        'md': { 'raw': '(min-width: 768px), print' },
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Polices typiques de la presse écrite -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Oswald:wght@500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@300;500;700&family=Cinzel:wght@400;700;900&display=swap"
         rel="stylesheet">
 
     <style>
+        :root {
+            --paper-color: #f7f3ed;
+            --ink-color: #1a1a1a;
+            --accent-red: #8b0000;
+            --accent-blue: #0f172a;
+        }
+
         body {
-            background-color: #e5e7eb;
-            /* Gris clair pour faire ressortir le papier */
-            color: #111827;
-            font-family: 'Lora', serif;
-            /* Police de lecture principale */
+            background-color: #d1d5db;
+            color: var(--ink-color);
+            font-family: 'EB Garamond', serif;
+            line-height: 1.35;
+            padding: 2rem 0;
         }
 
         .titre-journal {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
+            letter-spacing: -0.05em;
         }
 
         .titre-impact {
             font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .page-journal {
+            background-color: var(--paper-color);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.4), inset 0 0 120px rgba(0, 0, 0, 0.04);
+            max-width: 1050px;
+            margin: auto;
+            padding: 1.8rem 2rem;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .texte-justifie {
             text-align: justify;
             hyphens: auto;
-            /* Permet la coupure des mots comme dans les journaux */
         }
 
-        /* Lignes de séparation typiques des journaux */
-        .filet-epais {
-            border-top: 4px solid #111;
+        .filet-double {
+            border-top: 3px double var(--ink-color);
+            margin: 0.6rem 0;
         }
 
-        .filet-fin {
-            border-top: 1px solid #111;
+        .filet-gras {
+            border-top: 4px solid var(--ink-color);
         }
 
-        .filet-droit {
-            border-right: 1px solid #ccc;
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            line-height: 1;
+            padding: 0 0.4rem 0 0;
+            color: var(--accent-red);
+            font-weight: 900;
         }
 
-        /* Format papier A3/A4 */
-        .page-journal {
-            background-color: #fdfdfc;
-            /* Blanc très légèrement cassé pour l'effet papier */
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            max-width: 1000px;
-            /* Largeur max pour l'écran */
-            margin: 2rem auto;
-            padding: 1.5rem;
-        }
-
-        /* Colonnes pour le ventre */
-        .colonnes-2 {
-            column-count: 2;
-            column-gap: 1.5rem;
-            column-rule: 1px solid #ccc;
-        }
-
-        /* Étiquettes techniques cachées à l'impression, visibles à l'écran */
         .tag-structure {
             position: absolute;
-            background-color: #ef4444;
+            background: var(--accent-red);
             color: white;
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            text-transform: uppercase;
-            font-family: sans-serif;
-            font-weight: bold;
-            top: 0;
-            left: 0;
+            font-size: 0.55rem;
+            font-family: 'Oswald', sans-serif;
+            padding: 1px 6px;
+            top: -9px;
+            left: 8px;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
+            transition: 0.3s;
+            z-index: 50;
+            border-radius: 2px;
         }
 
-        /* Au survol, on montre la structure à la prof ! */
         .bloc-structure:hover .tag-structure {
             opacity: 1;
         }
@@ -93,31 +108,53 @@
             position: relative;
         }
 
-        /* Optimisation pour l'impression / Export PDF */
+        .glass-ad {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        figure img {
+            filter: grayscale(100%) contrast(1.15) sepia(0.08);
+        }
+
+        /* ============ IMPRESSION A4 ============ */
         @media print {
-            body {
-                background: none;
-                margin: 0;
-            }
-
-            .page-journal {
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-                max-width: 100%;
-            }
-
-            .tag-structure {
-                display: none !important;
-            }
-
             @page {
                 size: A4 portrait;
-                margin: 1cm;
+                margin: 0;
+            }
+
+            body {
+                background: none !important;
+                color: black !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                zoom: 0.92;
             }
 
             .no-print {
-                display: none;
+                display: none !important;
+            }
+
+            .page-journal {
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 5mm !important;
+                min-height: 100vh !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+
+            [class*="min-h-"] {
+                min-height: 100vh !important;
             }
         }
     </style>
@@ -125,227 +162,244 @@
 
 <body>
 
-    <div class="text-center py-4 no-print text-gray-600">
-        <p>Astuce : Survolez les zones pour voir apparaître les noms (Bandeau, Ventre, etc.). <br>Faites
-            <strong>Ctrl+P</strong> pour enregistrer en PDF.
-        </p>
+    <div class="text-center mb-4 no-print italic text-gray-500 text-sm">
+        Premium Edition — Hadafo Media | Survolez pour la structure | <strong>Ctrl+P</strong> pour PDF A4
     </div>
 
-    <!-- FEUILLE DU JOURNAL -->
     <div class="page-journal">
 
         <!-- 1. LE BANDEAU -->
         <div
-            class="bloc-structure bg-red-700 text-white text-center py-2 px-4 mb-4 uppercase tracking-widest font-bold text-sm">
+            class="bloc-structure bg-black text-white py-1 px-4 mb-4 text-center titre-impact tracking-[0.2em] text-[0.65rem]">
             <span class="tag-structure">Le Bandeau</span>
-            Urgent : L'arrestation d'un enseignant à l'IUT d'Arles provoque le choc !
+            Flash Info : L'IUT d'Arles en émoi après les révélations sur le "Système Chikaoui"
         </div>
 
-        <!-- 2. L'EN-TÊTE (Oreilles + Manchette) -->
-        <div class="flex justify-between items-end mb-4 border-b-4 border-black pb-4 bloc-structure">
-            <span class="tag-structure" style="top: -15px;">La Manchette & Les Oreilles</span>
+        <!-- 2. L'EN-TÊTE (Manchette + Oreilles) -->
+        <div class="flex justify-between items-stretch mb-5 bloc-structure">
+            <span class="tag-structure" style="top: -18px;">Manchette &amp; Oreilles</span>
 
             <!-- Oreille Gauche -->
-            <div class="w-1/5 text-center px-2">
-                <div class="border border-gray-300 p-1 bg-white">
-                    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=150&q=80" alt="Chips"
-                        class="w-full h-16 object-cover grayscale opacity-80 mb-1">
-                    <p class="text-[0.65rem] font-sans font-bold uppercase tracking-wider text-gray-500">Publicité Lays
-                    </p>
+            <div class="w-[17%] flex flex-col justify-center">
+                <div class="glass-ad p-1.5 text-center border border-gray-300">
+                    <p class="titre-impact text-[0.5rem] mb-0.5">Publicité</p>
+                    <img src="https://as1.ftcdn.net/jpg/09/90/15/34/1000_F_990153415_pyCXMMgenl9lG0c3UbhFA8BPiD4JBwnU.webp"
+                        alt="Chips" class="w-full h-10 object-cover mb-0.5 opacity-80 grayscale">
+                    <p class="font-bold text-[0.6rem] uppercase">Lays : Croquez la vie</p>
                 </div>
             </div>
 
             <!-- Manchette -->
-            <div class="w-3/5 text-center px-4 flex flex-col justify-end">
-                <div class="flex justify-center items-center gap-3 mb-1">
-                    <div
-                        class="w-8 h-8 rounded-full border border-black flex items-center justify-center font-bold text-xs font-sans">
-                        IUT</div>
-                    <h1 class="titre-journal text-6xl md:text-7xl font-black tracking-tighter uppercase leading-none">
-                        Hadafo Media</h1>
+            <div class="w-[62%] text-center border-x-4 border-black px-4">
+                <div class="flex items-center justify-center gap-4">
+                    <img src="img/Logo IUT Info Arles.png" alt="Logo IUT"
+                        class="h-10 rounded-full border-2 border-black p-0.5 bg-white shadow-sm">
+                    <div class="flex flex-col items-center">
+                        <span class="titre-impact text-[0.6rem] tracking-[0.25em] text-gray-400 mb-0.5">Journal
+                            Indépendant du BUT Info</span>
+                        <h1 class="titre-journal text-6xl md:text-7xl font-black leading-none uppercase">HADAFO</h1>
+                        <h2 class="titre-journal text-2xl md:text-3xl font-light tracking-[0.1em] -mt-1.5">MEDIA</h2>
+                    </div>
+                    <img src="img/Logo IUT Info Arles.png" alt="Logo IUT"
+                        class="h-10 rounded-full border-2 border-black p-0.5 bg-white shadow-sm">
                 </div>
-
-                <div class="filet-fin mt-2 mb-1"></div>
-                <div
-                    class="flex justify-between items-center text-[0.7rem] uppercase font-sans font-bold text-gray-600 px-2 tracking-wide">
-                    <span>Lundi 28 Octobre</span>
-                    <span>•</span>
-                    <span>Édition Arles / IUT</span>
-                    <span>•</span>
-                    <span>1,50 €</span>
-                    <span>•</span>
-                    <span>N° 001</span>
+                <div class="filet-double mt-2 mb-1"></div>
+                <div class="flex justify-between text-[0.55rem] font-bold uppercase tracking-widest px-3">
+                    <span>Lundi 28 Mars 2026</span>
+                    <span>Arles, France</span>
+                    <span>Prix : 1,80 €</span>
                 </div>
-                <div class="filet-fin mt-1"></div>
             </div>
 
             <!-- Oreille Droite -->
-            <div class="w-1/5 text-center px-2">
-                <div class="border border-gray-300 p-1 bg-white">
-                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=150&q=80" alt="Smartphone"
-                        class="w-full h-16 object-cover grayscale opacity-80 mb-1">
-                    <p class="text-[0.65rem] font-sans font-bold uppercase tracking-wider text-gray-500">Publicité
-                        Xiaomi</p>
+            <div class="w-[17%] flex flex-col justify-center text-center">
+                <div class="glass-ad p-1.5 border border-gray-300">
+                    <p class="titre-impact text-[0.5rem] mb-0.5">Innovation</p>
+                    <img src="img_xiaomi.avif" alt="Phone" class="w-full h-10 object-cover mb-0.5 opacity-80 grayscale">
+                    <p class="font-bold text-[0.6rem] uppercase italic">Xiaomi 14 Pro</p>
                 </div>
             </div>
         </div>
 
-        <!-- 3. LA TRIBUNE (Événement majeur) -->
-        <div class="bloc-structure flex flex-col md:flex-row gap-6 mb-6">
+        <!-- 3. LA TRIBUNE -->
+        <div class="bloc-structure flex flex-col md:flex-row gap-5 mb-5">
             <span class="tag-structure">La Tribune</span>
 
-            <div class="w-full md:w-7/12 flex flex-col justify-center">
-                <h2 class="titre-impact text-4xl md:text-5xl font-bold leading-tight mb-3 uppercase text-black">
-                    M. Chikaoui se fait arrêter en plein cours à l'IUT
+            <div class="flex-1">
+                <h2 class="titre-impact text-5xl font-black leading-[0.85] mb-2 text-black tracking-tight">
+                    FIN DE PARTIE POUR <br><span style="color: var(--accent-red);">M. CHIKAOUI</span>
                 </h2>
-                <h3 class="font-serif italic text-xl text-gray-700 mb-3 leading-snug">
-                    Stupeur dans les couloirs du département BUT ce matin. Les forces de l'ordre ont interrompu les
-                    travaux dirigés pour procéder à l'interpellation inattendue de l'enseignant.
-                </h3>
-                <div class="text-sm texte-justifie text-gray-800 font-serif">
-                    <p class="mb-2"><span class="font-bold text-xl float-left mr-2 mt-1 leading-none">I</span>l était
-                        9h30 lorsque la sirène a retenti sur le parvis de l'université. Les étudiants de BUT 1, alors en
-                        plein cours de communication technique, ont vu leur séance brutalement interrompue. Selon les
-                        premiers éléments recueillis sur place, la situation serait liée à un quiproquo administratif
-                        majeur...</p>
-                    <p class="font-bold text-red-700 font-sans text-xs uppercase mt-2">► Lire notre enquête exclusive en
-                        pages 2 et 3</p>
+                <p class="font-serif italic text-lg text-gray-700 mb-3 leading-snug border-l-4 pl-3"
+                    style="border-color: var(--accent-red);">
+                    L'enseignant star, connu pour sa traque impitoyable de l'IA, interpellé hier matin.
+                    Un enregistrement audio compromettant l'accuse de corruption sur les groupes SAE.
+                </p>
+                <div class="texte-justifie text-[0.85rem] text-gray-800 drop-cap leading-snug">
+                    Stupeur au bâtiment informatique de l'IUT d'Arles. Alors que le cours de communication technique
+                    battait son plein, deux officiers ont fait irruption dans la salle B204. "Nous n'avons rien compris,
+                    il était en train de nous expliquer pourquoi l'IA était le diable, quand un audio a commencé à
+                    tourner en boucle dans les haut-parleurs", raconte un étudiant. Le "piégeur de contrôles"
+                    s'est retrouvé au cœur de son propre traquenard, orchestré par une cellule d'étudiants
+                    lassés par ses méthodes.
+                    <p class="mt-2 font-bold underline decoration-1 underline-offset-2 cursor-pointer text-sm"
+                        style="color: var(--accent-red);">►
+                        DÉTAILS DE L'INTERPELLATION PAGE 2</p>
                 </div>
             </div>
 
-            <div class="w-full md:w-5/12">
-                <figure class="m-0">
-                    <img src="https://images.unsplash.com/photo-1555985202-12975b0235dc?q=80&w=800&auto=format&fit=crop"
-                        alt="Véhicule de police" class="w-full h-[250px] object-cover border border-gray-300 grayscale">
-                    <figcaption class="text-[0.65rem] text-right text-gray-500 mt-1 uppercase font-sans">Crédit photo :
-                        Archives / Illustration</figcaption>
+            <div class="w-full md:w-[35%] flex flex-col gap-2">
+                <figure
+                    class="border-2 border-black p-0.5 shadow-md bg-white rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <img src="img_iut.jpg" alt="IUT d'Arles" class="w-full h-auto">
+                    <figcaption
+                        class="text-[0.5rem] bg-black text-white p-1 mt-0.5 uppercase tracking-widest text-center">
+                        Le bâtiment B, théâtre des événements
+                    </figcaption>
+                </figure>
+                <figure
+                    class="border-2 border-black p-0.5 shadow-md bg-white -rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <img src="/home/Barry/.gemini/antigravity/brain/baf596cf-4039-44c8-8686-6bb28d7071f7/police_arrest_iut_arles_1773876096160.png"
+                        alt="Arrestation IUT" class="w-full h-auto">
+                    <figcaption
+                        class="text-[0.5rem] bg-black text-white p-1 mt-0.5 uppercase tracking-widest text-center">
+                        Exclusivité : La police sur le campus
+                    </figcaption>
                 </figure>
             </div>
         </div>
 
-        <div class="filet-epais mb-4"></div>
+        <div class="filet-gras mb-4"></div>
 
-        <!-- 4. SOUS-TRIBUNE (Horizontale, sous la tribune) -->
+        <!-- 4. SOUS-TRIBUNE -->
         <div
-            class="bloc-structure bg-gray-100 p-4 mb-4 border border-gray-200 flex flex-col md:flex-row gap-4 items-center">
+            class="bloc-structure bg-stone-100 p-3 mb-4 border-y-2 border-dashed border-stone-400 flex flex-col md:flex-row gap-4 items-center">
             <span class="tag-structure">Sous-tribune</span>
-            <div class="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
-                    alt="Directrice" class="w-full h-full object-cover grayscale">
+            <div class="w-20 h-20 shrink-0 rounded-full border-4 border-white shadow-lg overflow-hidden grayscale">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=60" alt="Direction"
+                    class="w-full h-full object-cover">
             </div>
             <div>
-                <h4 class="titre-journal text-2xl font-bold mb-1">La direction de l'IUT appelle au calme</h4>
-                <p class="text-sm texte-justifie text-gray-700">Suite à l'événement de ce matin, la direction a publié
-                    un communiqué appelant à la retenue. Une cellule d'écoute psychologique a été mise en place pour les
-                    étudiants présents dans la salle lors de l'incident. Les cours du département sont pour le moment
-                    maintenus. <span class="font-bold font-sans text-xs uppercase ml-1">Lire l'intégralité du communiqué
-                        p. 4</span></p>
+                <h4 class="titre-journal text-xl font-bold mb-1">"L'IUT doit rester un lieu d'intégrité"</h4>
+                <p class="text-gray-700 italic text-sm leading-snug">
+                    Mme Szafrajzen, directrice par intérim : « Nous sommes sous le choc. Une enquête interne
+                    est ouverte sur la formation des groupes de SAE ».
+                </p>
+                <p class="text-[0.6rem] font-bold mt-1 tracking-tighter" style="color: var(--accent-red);">► ENTRETIEN
+                    EXCLUSIF P. 4</p>
             </div>
         </div>
 
-        <div class="filet-fin mb-4"></div>
+        <!-- 5. LA GRILLE CENTRALE -->
+        <div class="flex flex-col md:flex-row gap-5 mb-5">
 
-        <!-- 5. LA GRILLE CENTRALE : Sous-tribune gauche | Ventre | Sous-tribune droite -->
-        <div class="flex flex-col md:flex-row gap-6 mb-6">
-
-            <!-- Sous-tribune Gauche -->
-            <div class="w-full md:w-1/4 filet-droit pr-4 bloc-structure">
-                <span class="tag-structure">Sous-tribune (Gauche)</span>
-                <h5 class="titre-impact text-lg font-bold uppercase mb-2 border-b border-black inline-block pb-1">
-                    Analyse</h5>
-                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=300&auto=format&fit=crop"
-                    alt="Dossiers" class="w-full h-24 object-cover mb-2 grayscale">
-                <h6 class="font-bold text-md mb-1 leading-tight">Un malentendu administratif ?</h6>
-                <p class="text-xs texte-justifie text-gray-700">Nos sources indiquent que l'arrestation spectaculaire
-                    pourrait être due à une simple erreur d'homonymie dans les fichiers de la préfecture. Les avocats
-                    sont actuellement mobilisés pour éclaircir la situation avant la fin de la journée.</p>
-                <p class="font-bold text-red-700 font-sans text-[0.65rem] uppercase mt-2">► Analyse p. 5</p>
+            <!-- Analyse (Gauche) -->
+            <div class="w-full md:w-1/4 bloc-structure border-r border-stone-200 pr-4">
+                <span class="tag-structure">Analyse</span>
+                <h5 class="titre-impact text-base font-bold mb-2 border-b-2 border-black pb-0.5">L'IA VENGÈRESSE</h5>
+                <img src="img_ia.jpg" alt="IA Vengeresse" class="w-full h-24 object-cover mb-2 grayscale sepia-[0.2]">
+                <h6 class="font-bold text-sm mb-1 leading-tight">Le Deepfake de la Justice</h6>
+                <p class="text-xs texte-justifie leading-snug">
+                    Pour le faire tomber, les étudiants ont utilisé l'outil qu'il déteste : une IA
+                    génératrice de voix. Le "Deepfake" simulait une conversation où Chikaoui vendait
+                    les sujets d'examen en échange de paquets de chips Lays.
+                </p>
+                <p class="text-[0.6rem] font-bold mt-2 tracking-tighter" style="color: var(--accent-red);">► DÉCRYPTAGE
+                    P. 5</p>
             </div>
 
             <!-- LE VENTRE (Centre) -->
-            <div class="w-full md:w-2/4 px-2 bloc-structure">
-                <span class="tag-structure" style="top: -10px;">Le Ventre</span>
-                <p class="text-center font-sans font-bold text-xs uppercase tracking-widest text-red-700 mb-2">Éducation
-                    & Technologies</p>
-                <h4 class="titre-journal text-3xl font-black text-center mb-4 leading-tight">
-                    Nouveaux équipements pour le BUT : L'IUT passe à la vitesse supérieure
-                </h4>
-
-                <div class="colonnes-2 text-sm texte-justifie text-gray-800">
-                    <p class="mb-2">Au-delà de l'actualité brûlante de ce lundi, une excellente nouvelle attendait les
-                        étudiants de première année. Le département a investi massivement dans le renouvellement du parc
-                        informatique des salles de travaux pratiques.</p>
-                    <p class="mb-2">Ce sont plusieurs dizaines de nouveaux ordinateurs Mac, équipés des puces de
-                        dernière génération, qui ont été installés durant le week-end. L'objectif est clair : permettre
-                        aux étudiants de travailler dans des conditions optimales sur les logiciels gourmands de
-                        création.</p>
-                    <p class="mb-2">"<em>C'est un véritable bond en avant pour la professionnalisation</em>", a souligné
-                        Mme Szafrajzen, enseignante en communication technique. "<em>Nos étudiants peuvent désormais
-                            faire tourner la suite Adobe, faire du montage et de la mise en page sans subir aucun
-                            ralentissement. C'est essentiel pour les préparer aux exigences des agences de
-                            communication.</em>"</p>
+            <div class="w-full md:w-2/4 bloc-structure px-2">
+                <span class="tag-structure" style="top: -18px;">Le Ventre</span>
+                <div class="text-center mb-2">
+                    <span class="titre-impact text-[0.6rem] tracking-widest font-bold"
+                        style="color: var(--accent-red);">DOSSIER SPÉCIAL : SAE &amp; POUVOIR</span>
+                    <h4 class="titre-journal text-3xl font-black mt-1 leading-none uppercase">LA DICTATURE DES CHEFS
+                    </h4>
                 </div>
+                <div class="columns-2 gap-4 texte-justifie text-xs leading-snug"
+                    style="column-rule: 1px solid #e5e5e5;">
+                    <p class="mb-2">Le choix des chefs de groupe SAE par M. Chikaoui avait mis le feu
+                        aux poudres. De nombreux étudiants dénonçaient un arbitraire total, loin des
+                        principes de méritocratie prônés par l'IUT.</p>
+                    <p class="mb-2">"Il choisissait les chefs selon ses humeurs, nous empêchant d'utiliser
+                        nos outils habituels d'IA. C'était devenu invivable", témoigne un délégué.</p>
+                    <p class="mb-2">L'enquête révèle que les étudiants ont monté "l'Opération Turing" :
+                        un mois de préparation pour capturer des échantillons vocaux du professeur et
+                        entraîner un modèle neuronal capable de cloner sa voix.</p>
+                    <p>La supercherie était si parfaite que la patrouille de police a cru à une véritable
+                        transaction illégale dans les bureaux.</p>
+                </div>
+                <p class="text-[0.6rem] font-bold mt-2 text-center tracking-tighter" style="color: var(--accent-red);">►
+                    DOSSIER COMPLET P. 6-7</p>
             </div>
 
-            <!-- Sous-tribune Droite -->
-            <div class="w-full md:w-1/4 pl-4 border-l border-gray-300 bloc-structure">
-                <span class="tag-structure">Sous-tribune (Droite)</span>
-                <h5 class="titre-impact text-lg font-bold uppercase mb-2 border-b border-black inline-block pb-1">
-                    Témoignages</h5>
-                <h6 class="font-bold text-md mb-2 italic">"On a cru à un exercice anti-intrusion"</h6>
-                <p class="text-xs texte-justifie text-gray-700 mb-3">Léo, délégué de la classe de BUT 1, raconte la
-                    scène : "La porte s'est ouverte d'un coup. Au début, personne n'a réagi. On a l'habitude des
-                    exercices de sécurité. C'est quand on a vu le visage de l'enseignant qu'on a compris que c'était
-                    sérieux."</p>
-                <div class="bg-gray-100 p-2 text-xs italic text-gray-600 border-l-2 border-black">
-                    "Une ambiance irréelle dans la salle B204 ce matin." - Sarah, étudiante.
+            <!-- Témoignages (Droite) -->
+            <div class="w-full md:w-1/4 bloc-structure border-l border-stone-200 pl-4">
+                <span class="tag-structure">Paroles</span>
+                <h5 class="titre-impact text-base font-bold mb-2 border-b-2 border-black pb-0.5">VOX POPULI</h5>
+                <div class="bg-stone-50 p-2 border-l-4 shadow-inner text-xs italic mb-2"
+                    style="border-color: var(--accent-blue);">
+                    "On savait qu'il aimait nous piéger. On a juste inversé les rôles. C'est l'arroseur
+                    arrosé version 2.0."
+                    <p class="text-right font-bold mt-1">— Un étudiant (BUT 1)</p>
                 </div>
-                <p class="font-bold text-red-700 font-sans text-[0.65rem] uppercase mt-2">► Lire les récits p. 6</p>
+                <h6 class="font-bold text-sm mb-1">Justice ou Vengeance ?</h6>
+                <p class="text-xs leading-snug">
+                    Le débat divise la promo. Si certains saluent l'audace technique, d'autres craignent
+                    des sanctions pour l'ensemble du département.
+                </p>
+                <p class="text-[0.6rem] font-bold mt-2 tracking-tighter" style="color: var(--accent-red);">► TÉMOIGNAGES
+                    P. 8</p>
             </div>
         </div>
 
-        <div class="filet-epais mb-4"></div>
+        <div class="filet-gras mb-4"></div>
 
-        <!-- 6. LE REZ-DE-CHAUSSÉE & LE CHEVAL -->
-        <div class="flex flex-col md:flex-row gap-6">
-
-            <!-- Rez-de-chaussée -->
-            <div class="w-full md:w-3/4 flex flex-col md:flex-row gap-6 pr-4 filet-droit bloc-structure">
-                <span class="tag-structure">Rez-de-chaussée / Pied de page</span>
-
-                <div class="w-full md:w-1/2">
-                    <h5 class="font-sans text-xs uppercase text-gray-500 font-bold mb-1">Vie Étudiante</h5>
-                    <h6 class="titre-journal font-bold text-lg mb-1 leading-tight">La grande soirée d'intégration
-                        confirmée aux Arènes</h6>
-                    <p class="text-xs texte-justifie text-gray-700">Malgré le climat actuel, le BDE maintient
-                        l'événement tant attendu de la rentrée. La soirée aura lieu jeudi soir dans le cadre prestigieux
-                        des Arènes d'Arles. <span class="font-bold">p. 8</span></p>
+        <!-- 6. LE REZ-DE-CHAUSSÉE -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div
+                class="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4 border-r border-stone-200 pr-4 bloc-structure">
+                <span class="tag-structure">Rez-de-chaussée</span>
+                <div>
+                    <h5 class="titre-impact text-[0.6rem] text-stone-500 font-bold mb-1">ÉQUIPEMENT</h5>
+                    <div class="flex gap-3">
+                        <img src="img_mac.webp" alt="Macs"
+                            class="w-16 h-16 object-cover grayscale border border-stone-300">
+                        <div>
+                            <h6 class="titre-journal font-bold text-base leading-tight">Des Mac M3 pour tous</h6>
+                            <p class="text-xs text-gray-600">L'IUT déploie sa nouvelle flotte informatique.
+                                <span class="font-bold">p. 9</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="w-full md:w-1/2">
-                    <h5 class="font-sans text-xs uppercase text-gray-500 font-bold mb-1">Sport Universitaire</h5>
-                    <h6 class="titre-journal font-bold text-lg mb-1 leading-tight">Le volley de l'IUT s'impose face à
-                        Aix</h6>
-                    <p class="text-xs texte-justifie text-gray-700">Pour leur premier match officiel de la saison,
-                        l'équipe masculine de volley-ball a brillé en s'imposant 3 sets à 1 contre le campus
-                        d'Aix-en-Provence. <span class="font-bold">p. 10</span></p>
+                <div>
+                    <h5 class="titre-impact text-[0.6rem] text-stone-500 font-bold mb-1">SPORT</h5>
+                    <div class="flex gap-3">
+                        <img src="img_voley.jpg" alt="Volley"
+                            class="w-16 h-16 object-cover grayscale border border-stone-300">
+                        <div>
+                            <h6 class="titre-journal font-bold text-base leading-tight">Volley : Le massacre d'Aix</h6>
+                            <p class="text-xs text-gray-600">L'IUT écrase ses rivaux en finale régionale.
+                                <span class="font-bold">p. 11</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Le Cheval -->
-            <div class="w-full md:w-1/4 bloc-structure">
+            <div class="bloc-structure">
                 <span class="tag-structure">Le Cheval</span>
-                <div class="bg-black text-white px-2 py-1 mb-2 inline-block">
-                    <h5 class="font-sans text-xs uppercase font-bold tracking-widest">Billet d'humeur</h5>
+                <div class="text-white px-2 py-0.5 mb-2 inline-block" style="background: var(--accent-red);">
+                    <h5 class="titre-impact text-[0.6rem] tracking-tighter">BILLET D'HUMEUR</h5>
                 </div>
-                <h6 class="titre-journal font-bold text-xl mb-2 italic">Le mistral gagnant ?</h6>
-                <p class="text-xs texte-justifie text-gray-700 mb-2">La météo arlésienne nous joue des tours en ce début
-                    de semestre. Entre mistral glacial qui claque les portes des amphis et averses soudaines qui
-                    trempent les copies, difficile de garder le cap. Pourtant, c'est dans ces bourrasques que se forgent
-                    les caractères de notre promotion...</p>
-                <p class="text-xs font-bold text-right font-sans uppercase">Suite en p. 12 ➔</p>
+                <h6 class="titre-journal font-bold text-lg italic leading-tight mb-1">L'IA, ce miroir...</h6>
+                <p class="text-xs italic text-gray-700 leading-snug">
+                    "On ne peut interdire le progrès, on ne peut que le comprendre. Chikaoui l'a appris
+                    à ses dépens : quand on combat des fantômes, on finit par en devenir un..."
+                </p>
+                <p class="text-[0.6rem] font-bold text-right mt-2 tracking-tighter">SUITE P. 12 ➔</p>
             </div>
-
         </div>
 
     </div>
