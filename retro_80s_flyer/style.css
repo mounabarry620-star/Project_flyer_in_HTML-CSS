@@ -1,0 +1,291 @@
+/* 
+    SURVIVAL: 80s OUTRUN EDITION
+    Design System — A5 (148mm × 210mm)
+    Theme: Synthwave / Retrogaming / 1980s Arcade
+*/
+
+:root {
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-purple: #9d00ff;
+    --bg-dark: rgba(13, 2, 33, 0.85); /* Dark Midnight Blue for glass blocks */
+    --text-white: #ffffff;
+    --font-outrun: 'Bungee', cursive;
+    --font-terminal: 'VT323', monospace;
+    --font-80s: 'Righteous', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000;
+    font-family: var(--font-80s);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+}
+
+/* PAGE WRAPPERS */
+.flyer-a5 {
+    width: 148mm;
+    height: 210mm;
+    background-image: url('photo_design.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(255, 0, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--neon-cyan);
+    overflow: hidden;
+}
+
+/* SCANLINES OVERLAY */
+.scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.06), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 2px, 3px 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.glow-layer {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(255, 0, 255, 0.1) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- RECTO --- */
+.top-nav {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.digital-label {
+    font-family: var(--font-terminal);
+    font-size: 1.2rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.outrun-hub {
+    flex: 1;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    z-index: 10;
+}
+
+.mini-logo {
+    height: 35px;
+    filter: drop-shadow(0 0 5px #fff);
+}
+
+.title-container {
+    text-align: center;
+}
+
+.main-title-80s {
+    font-family: var(--font-outrun);
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    line-height: 0.9;
+    text-shadow: 
+        3px 3px 0px var(--neon-cyan),
+        0 0 20px var(--neon-pink),
+        0 0 40px rgba(255, 0, 255, 0.5);
+    transform: perspective(200px) rotateX(10deg);
+}
+
+.subtitle-neon {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    color: var(--neon-cyan);
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--neon-cyan);
+    margin-top: 10px;
+}
+
+.glass-panel {
+    background: var(--bg-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 15px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.location-pulse {
+    border-left: 5px solid var(--neon-pink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insert-coin {
+    font-family: var(--font-terminal);
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    animation: flicker 2s infinite;
+}
+
+.loc-text { font-size: 1rem; font-weight: 700; }
+.loc-room { color: var(--neon-cyan); font-family: var(--font-terminal); font-size: 1.2rem; }
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 22%, 24%, 55% { opacity: 0; }
+}
+
+.narrative-box {
+    border-left: 5px solid var(--neon-cyan);
+}
+
+.terminal-text {
+    font-family: var(--font-terminal);
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.arcade-footer {
+    padding: 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+.pulse-text {
+    font-size: 0.8rem;
+    color: var(--neon-pink);
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+}
+
+/* --- VERSO --- */
+.hub-80s {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hud-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.hud-title {
+    font-family: var(--font-terminal);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--neon-cyan);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.grid-80s {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    flex: 1;
+}
+
+.hud-block {
+    padding: 20px;
+}
+
+.panel-header {
+    font-size: 0.8rem;
+    color: var(--text-white);
+    opacity: 0.7;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.neon-border-cyan { border: 1px solid var(--neon-cyan); box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.1); }
+.neon-border-pink { border: 1px solid var(--neon-pink); box-shadow: inset 0 0 15px rgba(255, 0, 255, 0.1); }
+
+.timeline-row {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-terminal);
+    font-size: 1.3rem;
+}
+
+.timeline-row.active {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--neon-cyan);
+}
+
+.recruit-txt {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.qr-container-80s {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.qr-mock {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border: 2px solid var(--neon-pink);
+}
+
+.qr-lbl { font-family: var(--font-terminal); font-size: 1.1rem; color: var(--neon-pink); }
+
+.hub-footer-80s {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hub-footer-80s p { font-size: 0.7rem; color: var(--neon-cyan); font-weight: 700; opacity: 0.8; }
+.mini-logo-white { height: 25px; filter: grayscale(100%) brightness(2); }
+
+/* PRINTING */
+@media print {
+    body { background: none; padding: 0; }
+    .flyer-a5 { box-shadow: none; border-color: #000; page-break-after: always; }
+    .scanlines { opacity: 0.1; }
+}
