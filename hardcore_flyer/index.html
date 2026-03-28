@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURVIVAL PROTOCOL : THE ESPORT SHOW</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =================== RECTO =================== -->
+    <section id="recto" class="page">
+        <!-- Ambient red vignette -->
+        <div class="vignette"></div>
+        <!-- Diagonal slash accents -->
+        <div class="slash slash-tl"></div>
+        <div class="slash slash-br"></div>
+
+        <header class="top-bar">
+            <div class="corner-mark tl"></div>
+            <span class="top-label">IUT D'ARLES — BUT INFO 1ÈRE ANNÉE</span>
+            <div class="corner-mark tr"></div>
+        </header>
+
+        <main class="recto-body">
+            <h1 class="main-title">
+                <span class="title-line-1">SURVIVAL</span>
+                <span class="title-line-2">PROTOCOL</span>
+                <span class="title-divider"></span>
+                <span class="title-line-3">THE ESPORT SHOW</span>
+            </h1>
+
+            <div class="visual-zone">
+                <img src="hp_gauge.png" alt="LOW HP - Critical Status" class="hp-visual">
+            </div>
+
+            <article class="pitch-block">
+                <p>
+                    La première année n'est pas un simple cursus, c'est la 
+                    <strong>ligue pro de la survie</strong>. Compilez votre C++ sans faille, 
+                    domptez vos bases de données, et survivez aux algorithmes. 
+                    Laissez le terminal de côté : <em>le lobby vous attend.</em>
+                </p>
+            </article>
+        </main>
+
+        <footer class="alert-banner">
+            <div class="alert-stripe"></div>
+            <div class="alert-content">
+                <span class="alert-icon">⚠</span>
+                <div class="alert-text">
+                    <span class="alert-title">ALERTE RECRUTEMENT</span>
+                    <span class="alert-sub">Le comité d'organisation recherche des profils logistiques. Tournez la page pour postuler.</span>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <!-- =================== VERSO =================== -->
+    <section id="verso" class="page">
+        <div class="vignette vignette-soft"></div>
+
+        <header class="verso-top">
+            <div class="corner-mark tl"></div>
+            <span class="hud-label">TACTICAL_HUD // OPERATIONAL DATA</span>
+            <div class="corner-mark tr"></div>
+        </header>
+
+        <div class="hud-body">
+            <!-- Bloc 1: Logistique -->
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">◆</span>
+                    <h3>LOGISTIQUE</h3>
+                </div>
+                <div class="data-rows">
+                    <div class="data-row">
+                        <span class="d-label">DÉPLOIEMENT</span>
+                        <span class="d-value">Lundi 30 Mars 2026</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="d-label">FENÊTRE DE TIR</span>
+                        <span class="d-value val-hot">16h00 — 19h00</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="d-label">LOCALISATION</span>
+                        <span class="d-value">Salle A20 · Hub Principal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc 2: Déroulement -->
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">◆</span>
+                    <h3>DÉROULEMENT</h3>
+                </div>
+                <ul class="op-timeline">
+                    <li>
+                        <span class="op-time">16:00</span>
+                        <div class="op-line"></div>
+                        <span class="op-desc">Ouverture du Lobby</span>
+                    </li>
+                    <li>
+                        <span class="op-time hot">16:30</span>
+                        <div class="op-line active"></div>
+                        <span class="op-desc"><strong>Tournoi "Survival Protocol"</strong></span>
+                    </li>
+                    <li>
+                        <span class="op-time">17:30</span>
+                        <div class="op-line"></div>
+                        <span class="op-desc">Défi Speed-Coding (Bash sous pression)</span>
+                    </li>
+                    <li>
+                        <span class="op-time">18:30</span>
+                        <div class="op-line"></div>
+                        <span class="op-desc">Clôture & Cashprize</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bloc 3: Staff -->
+            <div class="hud-panel panel-recruit">
+                <div class="panel-header">
+                    <span class="panel-icon icon-red">◆</span>
+                    <h3>INTÉGRER L'ÉQUIPE</h3>
+                </div>
+                <p class="recruit-body">
+                    Devenez acteur de l'événement. Missions : déploiement du matériel, 
+                    gestion des flux, arbitrage officiel des tournois.
+                </p>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="qr-zone">
+            <div class="qr-frame">
+                <div class="qr-inner"></div>
+            </div>
+            <span class="qr-text">SCANNEZ POUR INTÉGRER LE STAFF</span>
+        </div>
+
+        <footer class="verso-bottom">
+            <span>SYS.VER 2.13 // DESIGN : BARRY M. BAILO & TEAM // AIX-MARSEILLE UNIV.</span>
+        </footer>
+    </section>
+
+</body>
+</html>

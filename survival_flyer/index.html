@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Edition - BUT INFO Flyer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+
+    <!-- RECTO - Affiche promotionnelle -->
+    <section id="recto" class="page">
+        <header class="university-banner">
+            <p>Aix-Marseille Université - IUT d'Arles - 2025/2026</p>
+        </header>
+
+        <main class="content">
+            <h1 class="pixel-title">BUT INFO:<br>SURVIVAL EDITION</h1>
+
+            <div class="boss-container">
+                <div class="hp-gauge">
+                    <div class="hp-bar warning"></div>
+                    <span class="hp-text">WARNING: LOW HP</span>
+                </div>
+                <img src="boss.png" alt="Final Boss" class="boss-img">
+            </div>
+
+            <article class="thematic-text">
+                <p>
+                    Cette année, le BUT Informatique est un jeu de survie en mode Hardcore.
+                    Évitez les malus d'absence, survivez aux labyrinthes d'algorithmique,
+                    esquivez les pièges en Bash et HTML/CSS, farmez vos bases PostgreSQL et SQL,
+                    et battez le Boss final en C++ avec Qt et SageMath !
+                    <br><br>
+                    <span class="highlight">Avant le Game Over, faites une pause dans la matrice.</span>
+                </p>
+            </article>
+        </main>
+
+        <footer class="recto-footer">
+            <div class="cta-box">
+                <p>LA GUILDE RECRUTE ! PNJ et Healers demandés.</p>
+                <div class="arrow-container">
+                    <span>Tourne la page pour rejoindre la co-op ➔</span>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <!-- VERSO - Programme et Recrutement -->
+    <section id="verso" class="page">
+        <div class="menu-container">
+            <h2 class="menu-title">[ MAIN_MENU ]</h2>
+
+            <div class="grid-container">
+                <!-- Bloc 1: Quête Principale -->
+                <div class="menu-block block-info">
+                    <h3 class="block-title">QUÊTE PRINCIPALE - INFOS</h3>
+                    <ul class="info-list">
+                        <li><span class="label">DATE:</span> Lundi 30 Mars 2026</li>
+                        <li><span class="label">HEURE:</span> 16h00 - 19h00</li>
+                        <li><span class="label">LIEU:</span> Salle A20 (La Safe Zone)</li>
+                    </ul>
+                </div>
+
+                <!-- Bloc 2: Programme -->
+                <div class="menu-block block-schedule">
+                    <h3 class="block-title">PROGRAMME DU NIVEAU</h3>
+                    <div class="timeline">
+                        <div class="event">
+                            <span class="time">16h00:</span> Spawn des joueurs (Freeplay Rétro & Accueil)
+                        </div>
+                        <div class="event">
+                            <span class="time">16h30:</span> Tournoi "Student Survivors" (Pixels & Try and Die)
+                        </div>
+                        <div class="event">
+                            <span class="time">17h30:</span> Speed-coding Python & Bash (Survival Mini-games)
+                        </div>
+                        <div class="event">
+                            <span class="time">18h30:</span> Remise du Loot (Fin de partie & récompenses)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloc 3: Recrutement -->
+                <div class="menu-block block-recruitment flash-border">
+                    <h3 class="block-title">REJOINDRE LA CO-OP - DEVENIR VOLONTAIRE</h3>
+                    <p class="recruitment-text">
+                        Passe de l'autre côté de l'écran ! Aide-nous à installer le PC et les consoles,
+                        à gérer le spawn et à arbitrer les combats.
+                    </p>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="qr-container">
+                <div class="qr-placeholder">
+                    <!-- Square for QR code -->
+                    <div class="qr-box"></div>
+                </div>
+                <p class="qr-text">SCANNE POUR REJOINDRE LE STAFF</p>
+            </div>
+
+            <footer class="verso-footer">
+                <p>Created by Mamadou Barry & Partner // BUT INFO A1</p>
+            </footer>
+        </div>
+    </section>
+</body>
+
+</html>

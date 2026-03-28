@@ -1,0 +1,309 @@
+/* 
+    SURVIVAL EDITION - DESIGN SYSTEM
+    A5 Dimensions: 148mm x 210mm
+*/
+
+:root {
+    --bg-color: #0d0d1a;
+    --primary-green: #00ff41;
+    --alert-red: #ff003c;
+    --terminal-font: 'VT323', monospace;
+    --pixel-font: 'Press Start 2P', cursive;
+    --text-grey: #a1a1b5;
+    --border-width: 4px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: var(--primary-green);
+    font-family: var(--terminal-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    overflow-x: hidden;
+}
+
+/* CRT EFFECTS */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 100%), 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 100;
+    pointer-events: none;
+    background-size: 100% 2px, 3px 100%;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+    background-size: 100% 4px;
+    z-index: 101;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+/* PAGE WRAPPERS */
+.page {
+    width: 148mm;
+    height: 210mm;
+    background-color: var(--bg-color);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: var(--border-width) solid #2d2d4d;
+    overflow: hidden;
+}
+
+/* --- RECTO --- */
+.university-banner {
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 2px dashed var(--primary-green);
+    padding-bottom: 10px;
+}
+
+.pixel-title {
+    font-family: var(--pixel-font);
+    font-size: 1.6rem; /* A bit smaller to fit A5 width */
+    color: var(--primary-green);
+    text-shadow: 4px 4px var(--alert-red);
+    text-align: center;
+    margin: 30px 0;
+    line-height: 1.5;
+}
+
+.boss-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.hp-gauge {
+    width: 80%;
+    height: 30px;
+    border: 3px solid #fff;
+    margin-bottom: 15px;
+    position: relative;
+    padding: 3px;
+    background: #000;
+}
+
+.hp-bar {
+    height: 100%;
+    width: 15%; /* LOW HP */
+    background-color: var(--alert-red);
+    box-shadow: 0 0 10px var(--alert-red);
+}
+
+.hp-bar.warning {
+    animation: flash 1s infinite steps(2);
+}
+
+.hp-text {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    color: var(--alert-red);
+    font-family: var(--pixel-font);
+    font-size: 0.6rem;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+.boss-img {
+    max-width: 90%;
+    max-height: 40%;
+    border: 4px solid var(--primary-green);
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.thematic-text {
+    padding: 20px;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: var(--text-grey);
+    text-align: justify;
+}
+
+.highlight {
+    color: var(--primary-green);
+    font-weight: bold;
+}
+
+.recto-footer {
+    padding: 15px;
+}
+
+.cta-box {
+    border: 3px solid var(--primary-green);
+    padding: 10px;
+    text-align: center;
+    font-family: var(--pixel-font);
+    font-size: 0.7rem;
+    background: rgba(0,255,65,0.05);
+}
+
+.arrow-container {
+    margin-top: 10px;
+    color: var(--alert-red);
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+/* --- VERSO --- */
+.menu-title {
+    font-family: var(--pixel-font);
+    text-align: center;
+    color: var(--primary-green);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-block {
+    border: 2px solid var(--primary-green);
+    padding: 15px;
+    position: relative;
+}
+
+.block-title {
+    font-family: var(--pixel-font);
+    font-size: 0.7rem;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--bg-color);
+    padding: 0 5px;
+}
+
+.info-list {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.info-list li {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.label {
+    color: var(--alert-red);
+    font-weight: bold;
+}
+
+.timeline {
+    margin-top: 5px;
+}
+
+.event {
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+    border-left: 2px solid var(--primary-green);
+    padding-left: 10px;
+}
+
+.time {
+    color: var(--primary-green);
+    font-weight: bold;
+}
+
+.block-recruitment {
+    border-color: var(--alert-red);
+    color: var(--alert-red);
+    background: rgba(255, 0, 60, 0.05);
+}
+
+.flash-border {
+    animation: border-flash 1.5s infinite;
+}
+
+@keyframes border-flash {
+    0%, 100% { border-color: var(--alert-red); }
+    50% { border-color: white; }
+}
+
+.recruitment-text {
+    font-size: 1.4rem;
+    line-height: 1.1;
+}
+
+.qr-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-box {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border: 4px solid var(--primary-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* QR Simulation dots */
+.qr-box::after {
+    content: "QR";
+    color: black;
+    font-family: var(--pixel-font);
+    font-size: 1rem;
+}
+
+.qr-text {
+    font-family: var(--pixel-font);
+    font-size: 0.6rem;
+    margin-top: 10px;
+}
+
+.verso-footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* PRINT OPTIMIZATION */
+@media print {
+    body { background: none; padding: 0; }
+    .page { margin: 0; box-shadow: none; border: none; }
+    .crt-overlay, .scanlines { display: none; }
+    .page { page-break-after: always; }
+}
