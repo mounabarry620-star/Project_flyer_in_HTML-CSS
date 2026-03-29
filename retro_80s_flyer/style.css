@@ -15,6 +15,9 @@
     --font-80s: 'Righteous', cursive;
 }
 
+.highlight-pink { color: var(--neon-pink); font-weight: 800; }
+.highlight-cyan { color: var(--neon-cyan); font-weight: 800; }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -180,9 +183,10 @@ body {
 
 .pulse-text {
     font-size: 0.8rem;
-    color: var(--neon-pink);
+    color: #fff;
     letter-spacing: 2px;
     animation: pulse 1.5s infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 @keyframes pulse {
@@ -262,11 +266,11 @@ body {
     gap: 15px;
 }
 
-.qr-mock {
+.qr-final {
     width: 60px;
     height: 60px;
-    background: #fff;
     border: 2px solid var(--neon-pink);
+    display: block;
 }
 
 .qr-lbl { font-family: var(--font-terminal); font-size: 1.1rem; color: var(--neon-pink); }
@@ -284,8 +288,21 @@ body {
 .mini-logo-white { height: 25px; filter: grayscale(100%) brightness(2); }
 
 /* PRINTING */
+@page {
+    margin: 0;
+    size: A5;
+}
+
 @media print {
-    body { background: none; padding: 0; }
-    .flyer-a5 { box-shadow: none; border-color: #000; page-break-after: always; }
+    body { background: none; padding: 0; margin: 0; }
+    .flyer-a5 { 
+        box-shadow: none; 
+        border: none; 
+        width: 148mm;
+        height: 210mm;
+        page-break-after: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
     .scanlines { opacity: 0.1; }
 }

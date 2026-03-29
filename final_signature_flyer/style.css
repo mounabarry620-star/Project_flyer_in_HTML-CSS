@@ -15,6 +15,8 @@
     --font-sans: 'Inter', sans-serif;
 }
 
+.highlight-blue { color: var(--accent-blue); font-weight: 800; }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -308,10 +310,11 @@ body {
     border: 1px solid var(--text-main);
 }
 
-.qr-mockup {
-    width: 50px;
-    height: 50px;
-    background-color: var(--text-main);
+.qr-final-img {
+    width: 60px;
+    height: 60px;
+    display: block;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .qr-instruction { font-size: 0.55rem; font-weight: 800; letter-spacing: 2px; color: var(--text-meta); }
@@ -329,8 +332,21 @@ body {
 .hub-logo { height: 25px; filter: grayscale(100%); opacity: 0.5; }
 
 /* PRINT OPTIMIZATION */
+@page {
+    margin: 0;
+    size: A5;
+}
+
 @media print {
-    body { background: none; padding: 0; }
-    .flyer-a5 { box-shadow: none; border: none; page-break-after: always; }
+    body { background: none; padding: 0; margin: 0; }
+    .flyer-a5 { 
+        box-shadow: none; 
+        border: none; 
+        width: 148mm;
+        height: 210mm;
+        page-break-after: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
     .dot-grid { opacity: 0.1; }
 }
