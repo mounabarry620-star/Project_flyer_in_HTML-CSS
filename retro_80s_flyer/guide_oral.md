@@ -34,7 +34,8 @@ Enfin, nous avons fait le choix délibéré de retirer le terme 'SAE' du message
 
 Vous remarquerez aussi le programme détaillé, de 09h00 à 17h30. Nous l'avons structuré comme la progression d'un joueur, de la **'Boot Sequence'** jusqu'à la **'Quest Complete'**.
 
-Pour l'impression, nous avons optimisé le fichier en **'Full-bleed'** (plein cadre). En supprimant les marges blanches d'impression, on obtient un rendu professionnel, type affiche de film, ce qui renforce la crédibilité et le sérieux de notre organisation."
+*   **Le Logo IUT & Crédibilité** : Vous remarquerez le logo de l'IUT d'Arles intégré discrètement. C'est un choix de **légitimité institutionnelle**. Un événement officiel se doit de respecter l'identité visuelle de son organisation. Cela prouve aussi notre capacité à respecter une charte graphique, même au sein d'un univers créatif 'Outrun'.
+*   **L’Impression Professionnelle** : Nous avons travaillé sur un format **A5 'Plein Cadre' (Full-bleed)**. En supprimant les marges blanches d'impression, on obtient un rendu professionnel, type affiche de film, ce qui renforce la crédibilité et le sérieux de notre organisation."
 
 ---
 
